@@ -1,2 +1,2 @@
 # MajungaLibrary
-My Library code for Fsharp
+My Library for utitlies and helpers for Fsharp
