@@ -4,6 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RepositoryUrl>https://github.com/Majunga/MajungaLibrary</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <Authors>Ethan McWilliams</Authors>
+    <Company>Majunga.co.uk</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
