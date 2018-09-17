@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MajungaLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:MajungaLibrary.Helpers.FileHelper">
+            <summary>
+            Helpers for file related taskss
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.Helpers.FileHelper.DeleteExpiredFile(System.String)">
+            <summary>
+            Delete files in Directory that are older than 15 mins
+            </summary>
+            <param name="path">Directory Path</param>
+        </member>
+        <member name="M:MajungaLibrary.Helpers.FileHelper.GetFullPath(System.String)">
+            <summary>
+            Gets the full path of a Directory or defaults to current Directories full path
+            </summary>
+            <param name="path">Partial path</param>
+            <returns>Full Path</returns>
+        </member>
+        <member name="M:MajungaLibrary.Helpers.FileHelper.CleanUpFile(System.String)">
+            <summary>
+            Delete files in directory
+            </summary>
+            <param name="filePattern">Pattern to match with</param>
+        </member>
+        <member name="T:MajungaLibrary.Helpers.ProcessHelper">
+            <summary>
+            Helper to Run Processes
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.Helpers.ProcessHelper.Run(System.String,System.String)">
+            <summary>
+            Run Process
+            </summary>
+            <param name="filename">Name of file to run</param>
+            <param name="arguements">Arguments</param>
+            <returns>Task</returns>
+        </member>
+        <member name="T:MajungaLibrary.Helpers.Time">
+            <summary>
+            time Helpers
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.Helpers.Time.Validate(System.String)">
+            <summary>
+            Validate Time
+            </summary>
+            <param name="timeStr">String of Time, Expects HH:MM:SS</param>
+            <returns>Bool</returns>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.FFMpeg">
+            <summary>
+            FFMpeg Video Converter
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.FFMpeg.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MajungaLibrary.BusinessLogic.Services.FFMpeg"/> class.
+            </summary>
+            <param name="outputPath">Output path of converted file</param>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.FFMpeg.ConvertToMp4(System.IO.FileInfo,System.Tuple{System.String,System.String})">
+            <summary>
+            Convert file to Mp4
+            </summary>
+            <param name="file">File to convert</param>
+            <param name="times">Times tp cut file to</param>
+            <returns>async task of Converted Files Info </returns>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing">
+            <summary>
+            Message Queue Interface
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.QueueMessage(System.String)">
+            <summary>
+            Queue Message
+            </summary>
+            <param name="serialisedMessage">Message to send</param>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.QueueMessage``1(``0)">
+            <summary>
+            Queue Message
+            </summary>
+            <typeparam name="T">Generic Message Type</typeparam>
+            <param name="message">Message to send</param>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.ReadMessageQueue">
+            <summary>
+            Read and pop message from Queue
+            </summary>
+            <returns>Serialised Message</returns>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.ReadQueueCount">
+            <summary>
+            Count the number of messages in the Queue
+            </summary>
+            <returns>Count of messages</returns>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.ReadMessageQueue``1">
+            <summary>
+            Read and pop message from Queue
+            </summary>
+            <typeparam name="T">Generic Message Type</typeparam>
+            <returns>Message</returns>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.Interfaces.IVideoConverter">
+            <summary>
+            Converts video formats
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IVideoConverter.ConvertToMp4(System.IO.FileInfo,System.Tuple{System.String,System.String})">
+            <summary>
+            Convert any video type to MP4
+            </summary>
+            <param name="file">File to convert</param>
+            <param name="times">Cut file to size</param>
+            <returns>Converted video File</returns>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.Interfaces.IYoutubeDownload">
+            <summary>
+            Downloads files from the internet
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IYoutubeDownload.DownloadVideo(System.Uri,System.String)">
+            <summary>
+            Download YouTube video
+            </summary>
+            <param name="uri">Uri to the video</param>
+            <param name="userId">UserId of requester</param>
+            <returns>Task of Downloaded Video file</returns>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.Models.MessageQueue.MQConnection">
+            <summary>
+            Message Queue connection model
+            </summary>
+        </member>
+        <member name="P:MajungaLibrary.BusinessLogic.Services.Models.MessageQueue.MQConnection.Host">
+            <summary>
+            Gets or sets host
+            </summary>
+        </member>
+        <member name="P:MajungaLibrary.BusinessLogic.Services.Models.MessageQueue.MQConnection.Channel">
+            <summary>
+            Gets or sets channel
+            </summary>
+        </member>
+        <member name="P:MajungaLibrary.BusinessLogic.Services.Models.MessageQueue.MQConnection.RoutingKey">
+            <summary>
+            Gets or sets routingKey
+            </summary>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.RabbitMQService">
+            <summary>
+            RabbitMQ Service
+            <inheritdoc/>
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.#ctor(MajungaLibrary.BusinessLogic.Services.Models.MessageQueue.MQConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MajungaLibrary.BusinessLogic.Services.RabbitMQService"/> class.
+            </summary>
+            <param name="connection">MQ Connection Details</param>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.QueueMessage(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.QueueMessage``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.ReadMessageQueue">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.ReadMessageQueue``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.ReadQueueCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.Dispose">
+            <summary>
+            Dispose of RabbitMQ
+            </summary>
+        </member>
+        <member name="T:MajungaLibrary.BusinessLogic.Services.Youtube_Dl">
+            <summary>
+            Youtube-Dl is used for downloading Youtube videos
+            </summary>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Youtube_Dl.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MajungaLibrary.BusinessLogic.Services.Youtube_Dl"/> class.
+            </summary>
+            <param name="outputPath">Output path of downloaded Video</param>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Youtube_Dl.DownloadVideo(System.Uri,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Youtube_Dl.GetVideoIdFromQueryString(System.Uri)">
+            <summary>
+            Get the Video Id from the Uri's Query string
+            </summary>
+            <param name="uri">Uri of website</param>
+            <returns>Id of video</returns>
+        </member>
+    </members>
+</doc>

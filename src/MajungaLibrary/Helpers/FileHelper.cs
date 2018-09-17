@@ -29,7 +29,6 @@ namespace MajungaLibrary.Helpers
                     {
                         fileInfo.Delete();
                         Console.WriteLine($"Deleted {fileInfo.Name}");
-
                     }
                     catch (UnauthorizedAccessException)
                     {

@@ -1,10 +1,17 @@
-﻿[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
+﻿// <copyright file="Youtube_DlTests.cs" company="Majunga.co.uk">
+// Copyright (c) Majunga.co.uk. All rights reserved.
+// </copyright>
+
+[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
 namespace MajungaLibraryTests.BusinessLogic.Services
 {
-    using MajungaLibrary.BusinessLogic.Services;
     using System;
+    using MajungaLibrary.BusinessLogic.Services;
     using Xunit;
 
+    /// <summary>
+    /// Youtube-Dl Service Tests
+    /// </summary>
     public class Youtube_DlTests
     {
         [Fact]
@@ -48,7 +55,7 @@ namespace MajungaLibraryTests.BusinessLogic.Services
         [Fact]
         public void DownloadVideo_GoodUrl_ReturnsFileInfoOfDownloadedVideo()
         {
-            var youtube_dl = new Youtube_Dl("");
+            var youtube_dl = new Youtube_Dl(string.Empty);
             var id = "uq5MtA33OHk";
 
             var result = youtube_dl.DownloadVideo(new Uri($"https://www.youtube.com/watch?v={id}"), "test").Result;
@@ -64,7 +71,7 @@ namespace MajungaLibraryTests.BusinessLogic.Services
         [Fact]
         public void DownloadVideo_GoodUrlWithExtras_ReturnsFileInfoOfDownloadedVideo()
         {
-            var youtube_dl = new Youtube_Dl("");
+            var youtube_dl = new Youtube_Dl(string.Empty);
             var id = "uq5MtA33OHk";
 
             var result = youtube_dl.DownloadVideo(new Uri($"https://www.youtube.com/watch?v={id}&t=1407s"), "test").Result;
@@ -75,7 +82,6 @@ namespace MajungaLibraryTests.BusinessLogic.Services
             }
 
             Assert.NotNull(result);
-
         }
     }
 }

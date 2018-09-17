@@ -1,8 +1,15 @@
-﻿using MajungaLibrary.Helpers;
-using Xunit;
+﻿// <copyright file="TimeTests.cs" company="Majunga.co.uk">
+// Copyright (c) Majunga.co.uk. All rights reserved.
+// </copyright>
 
 namespace MajungaLibraryTests.Helpers
 {
+    using MajungaLibrary.Helpers;
+    using Xunit;
+
+    /// <summary>
+    /// Time Helper Tests
+    /// </summary>
     public class TimeTests
     {
         [Fact]

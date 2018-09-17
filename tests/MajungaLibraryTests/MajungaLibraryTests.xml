@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MajungaLibraryTests</name>
+    </assembly>
+    <members>
+        <member name="T:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests">
+            <summary>
+            Youtube-Dl Service Tests
+            </summary>
+        </member>
+        <member name="M:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests.GetVideoIdFromQueryString_MissingQueryString_ThrowNullArguementException">
+            <summary>
+            If missing Query string throw null exception
+            </summary>
+        </member>
+        <member name="M:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests.GetVideoIdFromQueryString_BadVideoUrl_ThrowNullArguementException">
+            <summary>
+            If Bad URL throw null exception
+            </summary>
+        </member>
+        <member name="M:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests.GetVideoIdFromQueryString_GoodUrl_ReturnsIdOfVideo">
+            <summary>
+            If good url return the ID of the youtube video
+            </summary>
+        </member>
+        <member name="M:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests.GetVideoIdFromQueryString_GoodUrlithExtra_ReturnsIdOfVideo">
+            <summary>
+            Good url with Time query string. Should return UD of video
+            </summary>
+        </member>
+        <member name="M:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests.DownloadVideo_GoodUrl_ReturnsFileInfoOfDownloadedVideo">
+            <summary>
+            Good url should download the video
+            </summary>
+        </member>
+        <member name="M:MajungaLibraryTests.BusinessLogic.Services.Youtube_DlTests.DownloadVideo_GoodUrlWithExtras_ReturnsFileInfoOfDownloadedVideo">
+            <summary>
+            Good url with extra time query string should download video
+            </summary>
+        </member>
+    </members>
+</doc>
