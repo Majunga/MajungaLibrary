@@ -7,7 +7,7 @@
     <Authors>Ethan McWilliams</Authors>
     <Company>Majunga.co.uk</Company>
     <Description>Library for my website, as a nuget package</Description>
-    <PackageId>Majunga Library</PackageId>
+    <PackageId>Majunga_Library</PackageId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
