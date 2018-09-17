@@ -6,6 +6,7 @@
     <RepositoryType>git</RepositoryType>
     <Authors>Ethan McWilliams</Authors>
     <Company>Majunga.co.uk</Company>
+    <Description>Library for my website, as a nuget package</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
