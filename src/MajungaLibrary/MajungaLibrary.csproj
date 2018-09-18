@@ -7,7 +7,7 @@
     <Authors>Ethan McWilliams</Authors>
     <Company>Majunga.co.uk</Company>
     <Description>Library for my website, as a nuget package</Description>
-    <PackageId>Majunga_Library</PackageId>
+    <PackageId>MajungaLibrary</PackageId>
     <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
 
