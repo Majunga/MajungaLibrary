@@ -9,6 +9,7 @@ namespace MajungaLibrary.BusinessLogic.Services
     using MajungaLibrary.BusinessLogic.Services.Models.MessageQueue;
     using Newtonsoft.Json;
     using RabbitMQ.Client;
+    using RabbitMQ.Client.Events;
 
     /// <summary>
     /// RabbitMQ Service
@@ -17,7 +18,6 @@ namespace MajungaLibrary.BusinessLogic.Services
     public class RabbitMQService : IMessageQueuing
     {
         private readonly IConnection rabbitMQConnection;
-        private readonly IModel channel;
         private readonly MQConnection mqConnection;
 
         /// <summary>
@@ -26,25 +26,30 @@ namespace MajungaLibrary.BusinessLogic.Services
         /// <param name="connection">MQ Connection Details</param>
         public RabbitMQService(MQConnection connection)
         {
+            this.mqConnection = connection;
+
             var factory = new ConnectionFactory() { HostName = connection.Host };
             this.rabbitMQConnection = factory.CreateConnection();
-            this.channel = this.rabbitMQConnection.CreateModel();
-            this.channel.QueueDeclare(
+            this.Channel = this.rabbitMQConnection.CreateModel();
+            this.Channel.QueueDeclare(
                 queue: this.mqConnection.Channel,
                 durable: false,
                 exclusive: false,
                 autoDelete: false,
                 arguments: null);
-
-            this.mqConnection = connection;
         }
+
+        /// <summary>
+        /// Gets channel to use
+        /// </summary>
+        public IModel Channel { get; }
 
         /// <inheritdoc/>
         public void QueueMessage(string serialisedMessage)
         {
             var body = Encoding.UTF8.GetBytes(serialisedMessage);
 
-            this.channel.BasicPublish(
+            this.Channel.BasicPublish(
                     exchange: string.Empty,
                     routingKey: this.mqConnection.RoutingKey,
                     basicProperties: null,
@@ -56,7 +61,7 @@ namespace MajungaLibrary.BusinessLogic.Services
         {
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
-            this.channel.BasicPublish(
+            this.Channel.BasicPublish(
                     exchange: string.Empty,
                     routingKey: this.mqConnection.RoutingKey,
                     basicProperties: null,
@@ -64,21 +69,24 @@ namespace MajungaLibrary.BusinessLogic.Services
         }
 
         /// <inheritdoc/>
-        public string ReadMessageQueue()
+        public void CreateConsumer(EventingBasicConsumer consumer)
         {
-            throw new System.NotImplementedException();
-        }
-
-        /// <inheritdoc/>
-        public T ReadMessageQueue<T>()
-        {
-            throw new System.NotImplementedException();
+            this.Channel.BasicConsume(
+                queue: this.mqConnection.Channel,
+                autoAck: true,
+                consumer: consumer);
         }
 
         /// <inheritdoc/>
         public uint ReadQueueCount()
         {
-            return this.channel.MessageCount(queue: this.mqConnection.Channel);
+            return this.Channel.MessageCount(queue: this.mqConnection.Channel);
+        }
+
+        /// <inheritdoc/>
+        public void Destroy()
+        {
+            this.Channel.QueueDelete(this.mqConnection.Channel);
         }
 
         /// <summary>
@@ -86,7 +94,7 @@ namespace MajungaLibrary.BusinessLogic.Services
         /// </summary>
         public void Dispose()
         {
-            this.channel.Dispose();
+            this.Channel.Dispose();
             this.rabbitMQConnection.Dispose();
         }
     }

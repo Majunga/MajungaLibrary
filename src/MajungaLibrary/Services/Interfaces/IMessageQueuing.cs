@@ -4,6 +4,7 @@
 
 namespace MajungaLibrary.BusinessLogic.Services.Interfaces
 {
+    using RabbitMQ.Client.Events;
     using System;
 
     /// <summary>
@@ -25,10 +26,10 @@ namespace MajungaLibrary.BusinessLogic.Services.Interfaces
         void QueueMessage<T>(T message);
 
         /// <summary>
-        /// Read and pop message from Queue
+        /// Create consumer to read messages
         /// </summary>
-        /// <returns>Serialised Message</returns>
-        string ReadMessageQueue();
+        /// <param name="consumer">Consumer Event</param>
+        void CreateConsumer(EventingBasicConsumer consumer);
 
         /// <summary>
         /// Count the number of messages in the Queue
@@ -37,10 +38,8 @@ namespace MajungaLibrary.BusinessLogic.Services.Interfaces
         uint ReadQueueCount();
 
         /// <summary>
-        /// Read and pop message from Queue
+        /// Destroy a queue
         /// </summary>
-        /// <typeparam name="T">Generic Message Type</typeparam>
-        /// <returns>Message</returns>
-        T ReadMessageQueue<T>();
+        void Destroy();
     }
 }

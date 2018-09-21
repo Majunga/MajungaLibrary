@@ -90,11 +90,11 @@
             <typeparam name="T">Generic Message Type</typeparam>
             <param name="message">Message to send</param>
         </member>
-        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.ReadMessageQueue">
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.CreateConsumer(RabbitMQ.Client.Events.EventingBasicConsumer)">
             <summary>
-            Read and pop message from Queue
+            Create consumer to read messages
             </summary>
-            <returns>Serialised Message</returns>
+            <param name="consumer">Consumer Event</param>
         </member>
         <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.ReadQueueCount">
             <summary>
@@ -102,12 +102,10 @@
             </summary>
             <returns>Count of messages</returns>
         </member>
-        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.ReadMessageQueue``1">
+        <member name="M:MajungaLibrary.BusinessLogic.Services.Interfaces.IMessageQueuing.Destroy">
             <summary>
-            Read and pop message from Queue
+            Destroy a queue
             </summary>
-            <typeparam name="T">Generic Message Type</typeparam>
-            <returns>Message</returns>
         </member>
         <member name="T:MajungaLibrary.BusinessLogic.Services.Interfaces.IVideoConverter">
             <summary>
@@ -167,19 +165,24 @@
             </summary>
             <param name="connection">MQ Connection Details</param>
         </member>
+        <member name="P:MajungaLibrary.BusinessLogic.Services.RabbitMQService.Channel">
+            <summary>
+            Gets channel to use
+            </summary>
+        </member>
         <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.QueueMessage(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.QueueMessage``1(``0)">
             <inheritdoc/>
         </member>
-        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.ReadMessageQueue">
-            <inheritdoc/>
-        </member>
-        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.ReadMessageQueue``1">
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.CreateConsumer(RabbitMQ.Client.Events.EventingBasicConsumer)">
             <inheritdoc/>
         </member>
         <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.ReadQueueCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.Destroy">
             <inheritdoc/>
         </member>
         <member name="M:MajungaLibrary.BusinessLogic.Services.RabbitMQService.Dispose">
@@ -207,6 +210,26 @@
             </summary>
             <param name="uri">Uri of website</param>
             <returns>Id of video</returns>
+        </member>
+        <member name="T:MajungaLibrary.Services.Models.MessageQueue.DownloaderRequestMessage">
+            <summary>
+            Message sent to Downloader Service
+            </summary>
+        </member>
+        <member name="P:MajungaLibrary.Services.Models.MessageQueue.DownloaderRequestMessage.Id">
+            <summary>
+            Gets or sets Id
+            </summary>
+        </member>
+        <member name="P:MajungaLibrary.Services.Models.MessageQueue.DownloaderRequestMessage.UserId">
+            <summary>
+            Gets or sets UserId
+            </summary>
+        </member>
+        <member name="P:MajungaLibrary.Services.Models.MessageQueue.DownloaderRequestMessage.Url">
+            <summary>
+            Gets or sets Url
+            </summary>
         </member>
     </members>
 </doc>
